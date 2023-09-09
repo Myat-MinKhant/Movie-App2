@@ -1,8 +1,8 @@
 import { useMemo } from "react";
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
-function PaginationPage({ results, loading, setLoading, setMoviesByPage, category, currentPage }) {
-    const navigate = useNavigate()
+function PaginationPage({ results, loading, setLoading, setMoviesByPage, category }) {
+    // const navigate = useNavigate()
 
     function generateTotalPagination(results) {
         let arr = [];
@@ -23,7 +23,7 @@ function PaginationPage({ results, loading, setLoading, setMoviesByPage, categor
         setLoading(true);
         setMoviesByPage(e.currentTarget.dataset.page);
         localStorage.setItem("Current_Page", e.currentTarget.dataset.page);
-        navigate(`/${category}?page=${currentPage}`);
+        // navigate(`/${category}?page=${currentPage}`);
     }
 
     return (
