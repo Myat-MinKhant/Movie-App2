@@ -9,9 +9,11 @@ const TopRated = () => {
 
     return (
         <Wrapper>
-            <Link to='/top_rated'>
-                <h2 className=' text-4xl font-semibold text-white mb-16 mt-28'>Top Rated</h2>
-            </Link>
+            <div className=" w-fit">
+                <Link to='/top_rated/1'>
+                    <h2 className=' text-4xl font-semibold text-white mb-16 mt-28'>Top Rated</h2>
+                </Link>
+            </div>
             <CardContainer movies={topRated} />
         </Wrapper>
     )

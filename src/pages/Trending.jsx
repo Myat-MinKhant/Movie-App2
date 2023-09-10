@@ -5,7 +5,7 @@ import PageContainer from "../components/PageContainer/PageContainer"
 
 const Trending = () => {
     // const { trending } = useContext(MoviesContext)
-    
+
     return (
         <Wrapper>
             <PageContainer category={'trending'} />

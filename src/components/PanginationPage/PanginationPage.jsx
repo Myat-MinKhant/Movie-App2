@@ -1,13 +1,19 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom"
 
-function PaginationPage({ results, loading, setLoading, setMoviesByPage, category }) {
-    // const navigate = useNavigate()
+function PaginationPage({ results, loading, category, setLoading }) {
 
     function generateTotalPagination(results) {
         let arr = [];
-        for (let i = 1; i <= results.total_pages; i++) {
-            arr.push(i);
+
+        if (results.total_pages > 500) {
+            for (let i = 1; i <= 500; i++) {
+                arr.push(i);
+            }
+        } else {
+            for (let i = 1; i <= results.total_pages; i++) {
+                arr.push(i);
+            }
         }
 
         return arr;
@@ -19,16 +25,17 @@ function PaginationPage({ results, loading, setLoading, setMoviesByPage, categor
     )
     // console.log(totalPagination);
 
-    function handleGoSpecificPage(e) {
+    function handleGoSpecificPage() {
         setLoading(true);
-        setMoviesByPage(e.currentTarget.dataset.page);
-        localStorage.setItem("Current_Page", e.currentTarget.dataset.page);
+        // setMoviesByPage(e.currentTarget.dataset.page);
+        // setCurrentPage(true)
+        // localStorage.setItem("Current_Page", e.currentTarget.dataset.page);
         // navigate(`/${category}?page=${currentPage}`);
     }
 
     return (
         <div className=" page-numbers">
-            <Link to={`/${category}`}>
+            <Link to={`/${category}/1`}>
                 <button
                     className={`page-number ${totalPagination[0] === results.page ? "active" : ""
                         }  ${loading ? "cursor-not-allowed disabled:" : ""
@@ -65,8 +72,9 @@ function PaginationPage({ results, loading, setLoading, setMoviesByPage, categor
 
                     : totalPagination),
                 ].map(v => (
-                    <Link to={`/${category}?page=${v}`} key={v}>
+                    <Link to={`/${category}/${v}`} key={v}>
                         <button
+                            key={v}
                             className={`page-number ${v === results.page ? "active" : ""
                                 } ${loading ? "cursor-not-allowed" : ""
                                 }`}
@@ -80,22 +88,25 @@ function PaginationPage({ results, loading, setLoading, setMoviesByPage, categor
                 ))
             }
 
-            {results.page < results.total_pages - 4 ? <span className=' text-white'>. . .</span> : <></>}
+            {results.page < results.total_pages - 3 ? <span className=' text-white'>. . .</span> : <></>}
 
-            <Link to={`/${category}?page=${totalPagination[totalPagination.length - 1]}`}>
-                <button
-                    className={`page-number ${totalPagination[totalPagination.length - 1] === results.page
-                        ? "active"
-                        : ""
-                        } py-1 px-2 ${loading ? "cursor-not-allowed" : ""}`}
-                    key={totalPagination[totalPagination.length - 1]}
-                    disabled={loading}
-                    data-page={totalPagination[totalPagination.length - 1]}
-                    onClick={handleGoSpecificPage}
-                >
-                    {totalPagination[totalPagination.length - 1]}
-                </button>
-            </Link>
+            {results.page < results.total_pages - 2 && (
+                <Link to={`/${category}/${totalPagination[totalPagination.length - 1]}`}>
+                    <button
+                        className={`page-number ${totalPagination[totalPagination.length - 1] === results.page
+                            ? "active"
+                            : ""
+                            } py-1 px-2 ${loading ? "cursor-not-allowed" : ""}`}
+                        key={totalPagination[totalPagination.length - 1]}
+                        disabled={loading}
+                        data-page={totalPagination[totalPagination.length - 1]}
+                        onClick={handleGoSpecificPage}
+                    >
+                        {totalPagination[totalPagination.length - 1]}
+                    </button>
+                </Link>
+            )}
+
         </div>
     )
 }

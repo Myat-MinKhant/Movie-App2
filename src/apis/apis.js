@@ -23,6 +23,7 @@ export async function FetchTrendingMovies() {
     return data
 }
 
+
 export async function FetchNowPlayingMovies() {
     let data = [];
 

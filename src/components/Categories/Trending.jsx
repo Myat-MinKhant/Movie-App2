@@ -7,13 +7,13 @@ import { MoviesContext } from "../../context/ContextProvider"
 const Trending = () => {
     const { trending } = useContext(MoviesContext)
 
-    console.log(trending);
-
     return (
         <Wrapper>
-            <Link to='/trending'>
-                <h2 className=' text-4xl font-semibold text-white mb-16 mt-28'>Trending Right Now</h2>
-            </Link>
+            <div className=" w-fit">
+                <Link to={`/trending/1`}>
+                    <h2 className=' text-4xl font-semibold text-white mb-16 mt-28'>Trending Right Now</h2>
+                </Link>
+            </div>
             <CardContainer movies={trending} />
         </Wrapper>
     )

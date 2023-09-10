@@ -3,28 +3,18 @@ import MovieCard from '../Card/MovieCard';
 import PaginationPage from '../PanginationPage/PanginationPage';
 import { useParams } from 'react-router-dom';
 
-
 const PageContainer = ({ category }) => {
     const [data, setData] = useState({})
-    const [moviesByPage, setMoviesByPage] = useState(null)
+    // const [moviesByPage, setMoviesByPage] = useState(1)
     const [loading, setLoading] = useState(null);
-    // const {id} = useParams()
-
+    const { page } = useParams();
+    
     const moviesList = data.results;
-    const currentPage = parseInt(localStorage.getItem("Current_Page"))
-
-    console.log(moviesByPage);
-    console.log(parseInt(localStorage.getItem("Current_Page")));
-
+    
     const url =
         category === 'trending'
-            ? `https://api.themoviedb.org/3/trending/movie/week?page=${moviesByPage > 1 ? moviesByPage : currentPage}`
-            : `https://api.themoviedb.org/3/movie/${category}?page=${moviesByPage > 1 ? moviesByPage : currentPage}`
-
-    // useEffect(() => {
-    //     localStorage.setItem("Current_Page", 1);
-    //     // return null
-    // }, [category])
+            ? `https://api.themoviedb.org/3/trending/movie/week?page=${page}`
+            : `https://api.themoviedb.org/3/movie/${category}?page=${page}`
 
     useEffect(() => {
         const options = {
@@ -40,8 +30,7 @@ const PageContainer = ({ category }) => {
             .then(response => setData(response))
             .then(() => setLoading(false))
             .catch(err => console.error(err));
-
-    }, [url])
+    }, [page, url, loading])
 
 
     return (
@@ -73,10 +62,8 @@ const PageContainer = ({ category }) => {
                     results={data}
                     loading={loading}
                     setLoading={setLoading}
-                    setMoviesByPage={setMoviesByPage}
                     category={category}
-                // url={url}
-                    currentPage={currentPage}
+                    // setMoviesByPage={setMoviesByPage}
                 />
             </div>
         </>

@@ -17,6 +17,8 @@ export const MoviesProvider = (props) => {
     // const [originals, setOriginals] = useState([]);
     const [nowPlaying, setNowPlaying] = useState([]);
 
+    // console.log(trending);
+
     useEffect(() => {
         FetchTrendingMovies().then(trending => setTrending(trending))
         FetchPopularMovies().then(popular => setPopular(popular))

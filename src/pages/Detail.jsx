@@ -12,6 +12,8 @@ const Detail = () => {
   const [similar, setSimilar] = useState([])
   const { id } = useParams();
 
+  // console.log(id);
+
   useEffect(() => {
     const options = {
       method: 'GET',
@@ -49,7 +51,7 @@ const Detail = () => {
       <main className="  mt-14 px-10">
         <section className=" w-[1026px] mx-auto flex items-center justify-between">
           <div className=" w-1/2">
-            <img src={`https://image.tmdb.org/t/p/w1280${movie.poster_path || no_img}`} alt="" className=" w-[350px] h-[520px] rounded-lg" />
+            <img src={movie.poster_path ? `https://image.tmdb.org/t/p/w1280${movie.poster_path}` : no_img} alt="" className=" w-[350px] h-[520px] rounded-lg" />
           </div>
           <div className=" w-1/2">
             <h4 className=" text-4xl font-bold text-grey-50 mb-6 leading-normal">{movie.original_title}</h4>
@@ -102,7 +104,7 @@ const Detail = () => {
               <img src={movie.backdrop_path ? `https://image.tmdb.org/t/p/w1280${movie.backdrop_path}` : no_img} alt="" className=" h-60 w-full" />
             </div>
             <div className=" w-1/3 trailer-banner relative h-60 flex items-start overflow-y-hidden">
-              <img src={`https://image.tmdb.org/t/p/w1280${movie.poster_path}` || no_img} alt="" />
+              <img src={movie.poster_path ? `https://image.tmdb.org/t/p/w1280${movie.poster_path}` : no_img} alt="" />
             </div>
           </div>
         </section>

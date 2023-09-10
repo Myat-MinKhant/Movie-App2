@@ -9,9 +9,11 @@ const Upcoming = () => {
 
     return (
         <Wrapper>
-            <Link to='/upcoming'>
-                <h2 className=' text-4xl font-semibold text-white mb-16 mt-28'>Upcoming</h2>
-            </Link>
+            <div className=" w-fit">
+                <Link to='/upcoming/1'>
+                    <h2 className=' text-4xl font-semibold text-white mb-16 mt-28'>Upcoming</h2>
+                </Link>
+            </div>
             <CardContainer movies={upComing} />
         </Wrapper>
     )
