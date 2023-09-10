@@ -46,20 +46,20 @@ const SearchBox = ({ closeResults, setCloseResults }) => {
     }, [resultsRef, setCloseResults]);
 
     return (
-        <main ref={resultsRef}>
-            <div className=" inline-flex justify-start items-center gap-2 bg-primary-400 bg-opacity-80 text-white rounded-md px-3 py-2 border-grey-200">
+        <div ref={resultsRef}>
+            <div className=" inline-flex justify-start items-center gap-2 bg-primary-400 bg-opacity-80 text-white rounded-md px-3 py-2 border-grey-200  min-w-[90vw]">
                 <AiOutlineSearch className=" w-5 h-5 text-white" />
 
                 <input type="text"
                     placeholder=" Search Movies..."
-                    className=" text-sm w-64 h-6 bg-transparent border-none outline-none placeholder-white"
+                    className=" text-sm h-8  bg-transparent border-none outline-none placeholder-white"
                     value={qurey}
                     onChange={handleOnChange}
                     onMouseDown={handleOnChange}
                 />
             </div>
             {!closeResults && (
-                <div className=" w-[23%] h-fit shadow-md max-h-[calc(100vh-100px)] overflow-y-auto absolute top-[75px] pt-2 right-16 z-50 bg-grey-900 text-white ">
+                <div className="w-[90vw] md:w-[23%] h-fit shadow-md max-h-[calc(100vh-100px)] overflow-y-auto absolute top-[80px] md:top-[75px] pt-2 md:right-16 z-50 bg-grey-900 text-white ">
 
                     {searchResults.length > 0 ?
                         (
@@ -72,11 +72,11 @@ const SearchBox = ({ closeResults, setCloseResults }) => {
                             </ul>
                         )
                         : (
-                            <h3 className=" pt-2 pb-4 ml-5">No result...</h3>
+                            <h3 className=" pt-2 pb-4 ml-5 text-left">No result...</h3>
                         )}
                 </div >
             )}
-        </main>
+        </div>
     )
 }
 

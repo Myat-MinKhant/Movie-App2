@@ -39,7 +39,7 @@
 }
 
 .menu {
-  @apply flex items-center gap-5
+  @apply items-center gap-5 hidden md:flex
 }
 
 .menu-items {
@@ -73,7 +73,7 @@
 
 /* Pangination */
 .page-number {
-  @apply text-white py-1 px-3 mr-2 sm:mr-1 sm:text-sm md:text-lg
+  @apply text-white py-1 px-3 mr-2 text-sm md:text-lg
 }
 
 .page-number.active {
@@ -102,4 +102,22 @@
   100% {
     background-position: -200% 0;
   }
+}
+
+/* .swiper {
+  height: 400px;
+} */
+
+.swiper .swiper-pagination {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  text-align: right;
+  width: 100%;
+  height: 24px;
+  z-index: 50;
+}
+
+.swiper-pagination-bullet {
+  @apply bg-primary-400 w-[6px] h-[6px] rounded-lg;
 }

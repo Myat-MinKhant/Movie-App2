@@ -8,7 +8,7 @@ const TopRated = () => {
     const { topRated } = useContext(MoviesContext)
 
     return (
-        <Wrapper>
+        <Wrapper className='px-4'>
             <div className=" w-fit">
                 <Link to='/top_rated/1'>
                     <h2 className=' text-4xl font-semibold text-white mb-16 mt-28'>Top Rated</h2>

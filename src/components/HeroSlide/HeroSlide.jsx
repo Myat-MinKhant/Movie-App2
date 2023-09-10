@@ -32,14 +32,12 @@ const HeroSlide = () => {
                     <SwiperSlide
                         key={movie.id}
                         style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`, backgroundSize: 1440 }}
-                        className=' flex justify-start items-center hero-banner'
+                        className='flex justify-start md:items-center hero-banner bg-center'
                     >
                         <Wrapper>
-                            <div className=' w-1/2 mt-10 max-w-[600px] absolute z-30 bottom-32'>
-                                <h1 className=' text-6xl text-white font-semibold mb-5'>{movie.title}</h1>
-                                <p className=' text-white'>{movie.overview}</p>
-
-
+                            <div className='w-full md:w-1/2 mt-10 max-w-[600px] absolute z-30 md:bottom-32'>
+                                <h1 className=' mt-32 text-5xl text-center md:text-6xl text-white font-semibold mb-5'>{movie.title}</h1>
+                                <p className=' text-white'>{movie?.overview.length > 200 ? movie?.overview.slice(0, 200) + '...' : movie?.overview}</p>
                             </div>
                         </Wrapper>
                     </SwiperSlide>

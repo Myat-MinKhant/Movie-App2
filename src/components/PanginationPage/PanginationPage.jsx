@@ -34,7 +34,7 @@ function PaginationPage({ results, loading, category, setLoading }) {
     }
 
     return (
-        <div className=" page-numbers">
+        <div className=" page-numbers ">
             <Link to={`/${category}/1`}>
                 <button
                     className={`page-number ${totalPagination[0] === results.page ? "active" : ""
@@ -88,9 +88,9 @@ function PaginationPage({ results, loading, category, setLoading }) {
                 ))
             }
 
-            {results.page < results.total_pages - 3 ? <span className=' text-white'>. . .</span> : <></>}
+            {results.page < totalPagination.length - 3 ? <span className=' text-white'>. . .</span> : <></>}
 
-            {results.page < results.total_pages - 2 && (
+            {results.page < totalPagination.length - 2 && (
                 <Link to={`/${category}/${totalPagination[totalPagination.length - 1]}`}>
                     <button
                         className={`page-number ${totalPagination[totalPagination.length - 1] === results.page

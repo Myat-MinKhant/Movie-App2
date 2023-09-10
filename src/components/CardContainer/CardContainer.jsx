@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { FreeMode } from 'swiper/modules';
+import { FreeMode, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import MovieCard from '../Card/MovieCard';
@@ -7,13 +7,20 @@ import MovieCard from '../Card/MovieCard';
 const CardContainer = ({ movies }) => {
     return (
         <Swiper
-            slidesPerView={4.2}
+            slidesPerView={1}
+            spaceBetween={20}
             freeMode={true}
             pagination={{
                 clickable: true,
             }}
-            modules={[FreeMode]}
-            className=" w-full h-fit"
+            modules={[FreeMode, Pagination]}
+            className=" w-full h-[370px]"
+            breakpoints={{
+                640: {
+                    slidesPerView:3.2,
+                    spaceBetween:5,
+                },
+            }}
         >
             {movies?.length !== 0 && movies?.map(movie => (
                 <SwiperSlide key={movie.id}>

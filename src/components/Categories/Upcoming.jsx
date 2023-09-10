@@ -8,7 +8,7 @@ const Upcoming = () => {
     const { upComing } = useContext(MoviesContext)
 
     return (
-        <Wrapper>
+        <Wrapper className='px-4'>
             <div className=" w-fit">
                 <Link to='/upcoming/1'>
                     <h2 className=' text-4xl font-semibold text-white mb-16 mt-28'>Upcoming</h2>

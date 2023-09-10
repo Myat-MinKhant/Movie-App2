@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import no_img from '../../assets/NoImage.jpg'
-import Skeleton from '../Skeleton/Skeleton'
+// import Skeleton from '../Skeleton/Skeleton'
 
 const SeaultResultCard = ({ movie, setCloseResults }) => {
     return (

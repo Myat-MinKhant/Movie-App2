@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import MovieCard from '../Card/MovieCard';
 import PaginationPage from '../PanginationPage/PanginationPage';
 import { useParams } from 'react-router-dom';
+import Wrapper from "../../components/Wrapper/Wrapper"
+
 
 const PageContainer = ({ category }) => {
     const [data, setData] = useState({})
@@ -34,7 +36,7 @@ const PageContainer = ({ category }) => {
 
 
     return (
-        <>
+        <Wrapper className=' px-4'>
             <h2 className=' text-4xl font-semibold text-white mb-16 mt-28'>
                 {category === 'trending' ? 'Trending Right Now'
                     : category === 'popular' ? 'Popular'
@@ -44,7 +46,7 @@ const PageContainer = ({ category }) => {
                 }
             </h2>
 
-            <div className=' grid grid-cols-4 gap-10'>
+            <div className=' grid grid-cols-1 md:grid-cols-4 gap-10'>
                 {moviesList && moviesList.map(movie => (
                     <MovieCard
                         key={movie.id}
@@ -66,7 +68,7 @@ const PageContainer = ({ category }) => {
                     // setMoviesByPage={setMoviesByPage}
                 />
             </div>
-        </>
+        </Wrapper>
     )
 }
 

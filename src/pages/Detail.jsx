@@ -47,13 +47,13 @@ const Detail = () => {
   // console.log(tv);
 
   return (
-    <Wrapper>
-      <main className="  mt-14 px-10">
-        <section className=" w-[1026px] mx-auto flex items-center justify-between">
-          <div className=" w-1/2">
-            <img src={movie.poster_path ? `https://image.tmdb.org/t/p/w1280${movie.poster_path}` : no_img} alt="" className=" w-[350px] h-[520px] rounded-lg" />
+    <Wrapper className='px-4 '>
+      <main className=" mt-14 md:px-10">
+        <section className="w-full md:w-[1026px] mx-auto md:flex items-center justify-between">
+          <div className="w-[90vw] md:w-1/2">
+            <img src={movie.poster_path ? `https://image.tmdb.org/t/p/w1280${movie.poster_path}` : no_img} alt="" className=" w-[350px] h-[520px] rounded-xl" />
           </div>
-          <div className=" w-1/2">
+          <div className="w-full mt-10 md:w-1/2 ">
             <h4 className=" text-4xl font-bold text-grey-50 mb-6 leading-normal">{movie.original_title}</h4>
             <p className=" text-[16px] text-grey-300 mb-5">{movie.overview}</p>
             <div className=" w-fit text-sm px-2 py-1 rounded-lg flex items-center gap-1 text-rating-main bg-black bg-opacity-[0.65] mb-5">
@@ -89,10 +89,10 @@ const Detail = () => {
         </section>
 
         <section className=" mt-20">
-          <h2 className=" text-4xl font-semibold text-white mb-20">Watch Trailer</h2>
+          <h2 className=" text-4xl font-semibold text-white mb-10">Watch Trailer</h2>
 
           <div className=" flex items-center justify-between gap-5 ">
-            <div className="w-1/3">
+            <div className="w-full md:w-1/3">
               {
                 trailer
                   ? <iframe className="h-60 w-full" src={`https://www.youtube.com/embed/${trailer.key}`} />
@@ -100,10 +100,10 @@ const Detail = () => {
               }
 
             </div>
-            <div className=" w-1/3 trailer-banner relative">
+            <div className="hidden md:block w-1/3 trailer-banner relative">
               <img src={movie.backdrop_path ? `https://image.tmdb.org/t/p/w1280${movie.backdrop_path}` : no_img} alt="" className=" h-60 w-full" />
             </div>
-            <div className=" w-1/3 trailer-banner relative h-60 flex items-start overflow-y-hidden">
+            <div className="hidden w-1/3 trailer-banner relative h-60 md:flex items-start overflow-y-hidden">
               <img src={movie.poster_path ? `https://image.tmdb.org/t/p/w1280${movie.poster_path}` : no_img} alt="" />
             </div>
           </div>
@@ -112,7 +112,7 @@ const Detail = () => {
         <section className=" mt-28">
           <h2 className=" text-4xl font-semibold text-white mb-20">You May Also Like</h2>
 
-          <div className=" grid grid-cols-4 w-fit gap-9">
+          <div className=" grid grid-cols-1 md:grid-cols-4 w-fit gap-9">
             {similar.slice(0, 8).map(movie => (
               <MovieCard
                 key={movie.id}

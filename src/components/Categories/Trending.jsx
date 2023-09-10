@@ -8,10 +8,10 @@ const Trending = () => {
     const { trending } = useContext(MoviesContext)
 
     return (
-        <Wrapper>
+        <Wrapper className='px-4'>
             <div className=" w-fit">
                 <Link to={`/trending/1`}>
-                    <h2 className=' text-4xl font-semibold text-white mb-16 mt-28'>Trending Right Now</h2>
+                    <h2 className=' text-4xl font-semibold text-white mb-16 mt-28'>Trending Now</h2>
                 </Link>
             </div>
             <CardContainer movies={trending} />

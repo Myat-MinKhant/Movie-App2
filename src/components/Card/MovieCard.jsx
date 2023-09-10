@@ -14,8 +14,8 @@ const MovieCard = ({ poster_path, original_title, release_date, overview, id }) 
 
     return (
         <Link to={`/detail/${id}`}>
-            <div className=" w-[270px] h-[344px] relative overflow-hidden rounded-lg text-[14px] leading-[20px] card-transtion group hover:cursor-pointer">
-                <div className="w-[276px] h-[344px] relative overflow-hidden rounded-lg text-[14px] leading-[20px] card-transtion group">
+            <div className=" w-full md:w-[270px] h-[344px] relative overflow-hidden rounded-lg text-[14px] leading-[20px] card-transtion group hover:cursor-pointer">
+                <div className="w-full md:w-[276px] h-[344px] relative overflow-hidden rounded-lg text-[14px] leading-[20px] card-transtion group">
                     {/* {imageLoaded && ( */}
                     <img src={imagePath} alt={original_title} loading='lazy' className=" w-full" />
                     {/* )} */}
