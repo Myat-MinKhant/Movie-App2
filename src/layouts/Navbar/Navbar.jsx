@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom"
 import Wrapper from "../../components/Wrapper/Wrapper"
 import Logo from '../../components/Logo/Logo'
 import SearchBox from "../../components/SearchBox/SearchBox"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { HiMiniArrowTrendingUp } from 'react-icons/hi2'
 import { BsFire } from 'react-icons/bs'
 import { MdAccessTimeFilled } from 'react-icons/md'
@@ -16,12 +16,35 @@ const Navbar = () => {
         scrollPos: 0,
         scrollDirection: null,
     });
+    const resultsRef = useRef()
 
+
+    // console.log(navScroll.scrollPos);
     useEffect(() => {
         window.addEventListener("scroll", handleScrollDocument);
 
         return () => window.removeEventListener("scroll", handleScrollDocument);
     }, []);
+
+
+    useEffect(() => {
+        /**
+         * Alert if clicked on outside of element
+         */
+        function handleClickOutside(event) {
+            if (resultsRef.current && !resultsRef.current.contains(event.target)) {
+                // alert("You clicked outside of me!");
+                setCloseResults(true);
+            }
+        }
+
+        // Bind the event listener
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            // Unbind the event listener on clean up
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [resultsRef, setCloseResults]);
 
     function handleScrollDocument() {
         setNavScroll((prev) => {
@@ -36,20 +59,26 @@ const Navbar = () => {
     }
 
     return (
-        <header className={`navbar py-8 top-0 left-0 w-full z-[99] sticky bg-grey-900 shadow-2xl
+        <Wrapper className={`navbar py-8 top-0 left-0 z-[99] sticky bg-grey-900 shadow-2xl
         ${!closeResults
                 ? "show"
-                : navScroll.scrollDirection === "down"
+                : navScroll.scrollDirection === "down" && navScroll.scrollPos < -150
                     ? "hide"
                     : navScroll.scrollDirection === "up"
                         ? "show"
                         : ""
             }`}>
-            <Wrapper className=' w-full flex-row items-center justify-between'>
-                <Logo />
 
-                <nav className="mobile-nav w-screen px-4 flex flex-col text-center">
-                    <SearchBox closeResults={closeResults} setCloseResults={setCloseResults} />
+            {/* MOBILE AND TABLET NAV  */}
+            <nav className=' flex-row items-center justify-between lg:hidden'>
+                <div className="w-full sm:flex sm:items-center sm:justify-between">
+                    <Logo />
+                    <div className=" sm:w-3/5 " ref={resultsRef }>
+                        <SearchBox closeResults={closeResults} setCloseResults={setCloseResults} />
+                    </div>
+                </div>
+
+                <div className="mobile-nav flex flex-col text-center sm:mt-1">
                     <div className=" w-full flex items-center mt-6">
                         <NavLink to='/trending/1' className=' w-1/4 menu-items '>
                             <HiMiniArrowTrendingUp className=" w-6 h-6 mx-auto" />
@@ -64,17 +93,25 @@ const Navbar = () => {
                             <MdAccessTimeFilled className=" w-6 h-6 mx-auto" />
                         </NavLink>
                     </div>
-                </nav>
+                </div>
+            </nav>
 
-                <nav className="tablet-nav menu">
-                    <SearchBox closeResults={closeResults} setCloseResults={setCloseResults} />
+
+            {/* LAPTOP NAV  */}
+            <nav className="w-full tablet-nav menu flex items-center justify-between">
+                <Logo />
+
+                <div className=" flex items-center gap-5">
                     <NavLink to='/trending/1' className={`menu-items`}>Trending</NavLink>
                     <NavLink to='/popular/1' className='menu-items'>Popular</NavLink>
                     <NavLink to='/top_rated/1' className='menu-items'>Top Rated</NavLink>
                     <NavLink to='/upcoming/1' className='menu-items'>Upcoming</NavLink>
-                </nav>
-            </Wrapper>
-        </header >
+                    <div className=" lg:w-[300px]" ref={resultsRef}>
+                        <SearchBox closeResults={closeResults} setCloseResults={setCloseResults} />
+                    </div>
+                </div>
+            </nav>
+        </Wrapper >
     )
 }
 

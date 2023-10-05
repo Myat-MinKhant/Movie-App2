@@ -4,8 +4,8 @@ import no_img from '../../assets/NoImage.jpg'
 
 const SeaultResultCard = ({ movie, setCloseResults }) => {
     return (
-            < Link to={`/detail/${movie.id}`} onClick={() => setCloseResults(true)}>
-                <div className=' w-full flex items-start px-5 py-2 gap-4'>
+        <Link to={`/detail/${movie.id}`} onClick={() => setCloseResults(true)}>
+            <div className=' w-full flex items-start px-5 py-2 gap-4'>
 
                     {movie.poster_path ? (
                         <img src={`https://image.tmdb.org/t/p/w1280${movie.poster_path}`} alt={`${movie.tilte} Poster`} className=' min-w-[70px] h-[80px] rounded-lg object-fit' />

@@ -5,6 +5,13 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      sm: '480px',
+      sm2: '640px',
+      md: '760px',
+      lg: '1050px',
+      xl: '1360px'
+    },
     extend: {
       fontFamily: {
         poppins: ['Poppins', " sans-serif"]

@@ -16,15 +16,18 @@ export const MoviesProvider = (props) => {
     const [upComing, setUpComing] = useState([]);
     // const [originals, setOriginals] = useState([]);
     const [nowPlaying, setNowPlaying] = useState([]);
+    // const [loading, setLoading] = useState(true)
 
-    // console.log(trending);
+    // console.log(loading);
 
     useEffect(() => {
-        FetchTrendingMovies().then(trending => setTrending(trending))
-        FetchPopularMovies().then(popular => setPopular(popular))
-        FetchTopRatedMovies().then(topRated => setTopRated(topRated))
-        FetchUpComingMovies().then(upComing => setUpComing(upComing))
-        FetchNowPlayingMovies().then(nowPlaying => setNowPlaying(nowPlaying))
+        setTimeout(() => {
+            FetchTrendingMovies().then(trending => setTrending(trending))
+            FetchPopularMovies().then(popular => setPopular(popular))
+            FetchTopRatedMovies().then(topRated => setTopRated(topRated))
+            FetchUpComingMovies().then(upComing => setUpComing(upComing))
+            FetchNowPlayingMovies().then(nowPlaying => setNowPlaying(nowPlaying))
+        },2000)
     }, [])
 
     return (

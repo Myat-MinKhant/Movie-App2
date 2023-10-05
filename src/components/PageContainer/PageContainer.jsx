@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import MovieCard from '../Card/MovieCard';
 import PaginationPage from '../PanginationPage/PanginationPage';
 import { useParams } from 'react-router-dom';
-import Wrapper from "../../components/Wrapper/Wrapper"
+import Wrapper from '../Wrapper/Wrapper'
 
 
 const PageContainer = ({ category }) => {
@@ -10,9 +10,9 @@ const PageContainer = ({ category }) => {
     // const [moviesByPage, setMoviesByPage] = useState(1)
     const [loading, setLoading] = useState(null);
     const { page } = useParams();
-    
+
     const moviesList = data.results;
-    
+
     const url =
         category === 'trending'
             ? `https://api.themoviedb.org/3/trending/movie/week?page=${page}`
@@ -36,8 +36,8 @@ const PageContainer = ({ category }) => {
 
 
     return (
-        <Wrapper className=' px-4'>
-            <h2 className=' text-4xl font-semibold text-white mb-16 mt-28'>
+        <Wrapper>
+            <h2 className=' text-4xl font-semibold text-white mb-16 mt-28 sm:ml-3'>
                 {category === 'trending' ? 'Trending Right Now'
                     : category === 'popular' ? 'Popular'
                         : category === 'top_rated' ? 'Top Rated'
@@ -46,16 +46,18 @@ const PageContainer = ({ category }) => {
                 }
             </h2>
 
-            <div className=' grid grid-cols-1 md:grid-cols-4 gap-10'>
+            <div className=' grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 sm:gap-x-5 md:gap-x-0 gap-y-10'>
                 {moviesList && moviesList.map(movie => (
-                    <MovieCard
-                        key={movie.id}
-                        poster_path={movie.poster_path}
-                        original_title={movie.original_title || movie.name}
-                        release_date={movie.release_date || movie.first_air_date}
-                        overview={movie.overview}
-                        id={movie.id}
-                    />
+                    <div className=' md:mx-auto' key={movie.id}>
+                        <MovieCard
+                            key={movie.id}
+                            poster_path={movie.poster_path}
+                            original_title={movie.original_title || movie.name}
+                            release_date={movie.release_date || movie.first_air_date}
+                            overview={movie.overview}
+                            id={movie.id}
+                        />
+                    </div>
                 ))}
             </div>
 
@@ -65,7 +67,7 @@ const PageContainer = ({ category }) => {
                     loading={loading}
                     setLoading={setLoading}
                     category={category}
-                    // setMoviesByPage={setMoviesByPage}
+                // setMoviesByPage={setMoviesByPage}
                 />
             </div>
         </Wrapper>

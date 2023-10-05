@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import SeaultResultCard from "../SearchResultCard/SeaultResultCard";
 import { AiOutlineSearch } from 'react-icons/ai'
 // import Skeleton from "../Skeleton/Skeleton";
@@ -6,7 +6,6 @@ import { AiOutlineSearch } from 'react-icons/ai'
 const SearchBox = ({ closeResults, setCloseResults }) => {
     const [qurey, setQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
-    const resultsRef = useRef()
     // const [isLoading, setIsLoading] = useState(true);
 
     const handleOnChange = (e) => {
@@ -26,28 +25,16 @@ const SearchBox = ({ closeResults, setCloseResults }) => {
             .then(res => res.json())
             .then(data => {
                 if (!data.errors) {
-                        setSearchResults(data.results)
+                    setSearchResults(data.results)
                 } else {
                     setSearchResults([])
                 }
             })
     }
 
-    useEffect(() => {
-        function handleClickOutside(event) {
-            if (resultsRef.current && !resultsRef.current.contains(event.target)) {
-                setCloseResults(true);
-            }
-        }
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [resultsRef, setCloseResults]);
 
     return (
-        <div ref={resultsRef}>
-            <div className=" inline-flex justify-start items-center gap-2 bg-primary-400 bg-opacity-80 text-white rounded-md px-3 py-2 border-grey-200  min-w-[90vw]">
+            <div className=" inline-flex justify-start items-center gap-2 bg-primary-400 bg-opacity-80 text-white rounded-md px-3 py-2 border-grey-200 w-full relative">
                 <AiOutlineSearch className=" w-5 h-5 text-white" />
 
                 <input type="text"
@@ -56,27 +43,28 @@ const SearchBox = ({ closeResults, setCloseResults }) => {
                     value={qurey}
                     onChange={handleOnChange}
                     onMouseDown={handleOnChange}
+                    onClick={handleOnChange}
                 />
-            </div>
-            {!closeResults && (
-                <div className="w-[90vw] md:w-[23%] h-fit shadow-md max-h-[calc(100vh-100px)] overflow-y-auto absolute top-[80px] md:top-[75px] pt-2 md:right-16 z-50 bg-grey-900 text-white ">
 
-                    {searchResults.length > 0 ?
-                        (
-                            <ul>
-                                {searchResults.map(movie => (
-                                    <li key={movie.id}>
-                                        <SeaultResultCard movie={movie} setCloseResults={setCloseResults} />
-                                    </li>
-                                ))}
-                            </ul>
-                        )
-                        : (
-                            <h3 className=" pt-2 pb-4 ml-5 text-left">No result...</h3>
-                        )}
-                </div >
-            )}
-        </div>
+                {!closeResults && (
+                    <div className="w-full h-fit shadow-md max-h-[calc(100vh-100px)] overflow-y-auto absolute top-12 right-0 left-0 pt-2 z-50 bg-grey-900 text-white ">
+
+                        {searchResults.length > 0 ?
+                            (
+                                <ul>
+                                    {searchResults.map(movie => (
+                                        <li key={movie.id}>
+                                            <SeaultResultCard movie={movie} setCloseResults={setCloseResults} />
+                                        </li>
+                                    ))}
+                                </ul>
+                            )
+                            : (
+                                <h3 className=" pt-2 pb-4 ml-5 text-left">No result...</h3>
+                            )}
+                    </div >
+                )}
+            </div>
     )
 }
 
