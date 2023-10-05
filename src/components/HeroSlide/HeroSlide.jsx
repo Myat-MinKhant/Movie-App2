@@ -33,7 +33,7 @@ const HeroSlide = () => {
                         <SwiperSlide
                             key={movie.id}
                             style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`, backgroundSize: 1280 }}
-                            className='hero-banner bg-no-repeat bg-cover'
+                            className='hero-banner bg-center lg:bg-top bg-no-repeat bg-contain'
                         >
                             <Wrapper>
                                 <div className='w-full lg:w-1/2 mt-10 max-w-[600px] absolute z-30 bottom-20 md:ml-5 md:bottom-24'>

@@ -17,6 +17,7 @@ const Navbar = () => {
         scrollDirection: null,
     });
     const resultsRef = useRef()
+    const resultsRef2 = useRef()
 
 
     // console.log(navScroll.scrollPos);
@@ -40,9 +41,11 @@ const Navbar = () => {
 
         // Bind the event listener
         document.addEventListener("mousedown", handleClickOutside);
+        // document.addEventListener("onclick", handleClickOutside);
         return () => {
             // Unbind the event listener on clean up
-            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("mousedown", handleClickOutside); 
+            // document.removeEventListener("onclick", handleClickOutside); 
         };
     }, [resultsRef, setCloseResults]);
 
@@ -73,7 +76,7 @@ const Navbar = () => {
             <nav className=' flex-row items-center justify-between lg:hidden'>
                 <div className="w-full sm:flex sm:items-center sm:justify-between">
                     <Logo />
-                    <div className=" sm:w-3/5 " ref={resultsRef }>
+                    <div className=" sm:w-3/5 " ref={resultsRef2}>
                         <SearchBox closeResults={closeResults} setCloseResults={setCloseResults} />
                     </div>
                 </div>
