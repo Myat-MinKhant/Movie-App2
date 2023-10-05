@@ -67,7 +67,7 @@ const Navbar = () => {
                 ? "show"
                 : navScroll.scrollDirection === "down" && navScroll.scrollPos < -150
                     ? "hide"
-                    : navScroll.scrollDirection === "up"
+                    : navScroll.scrollDirection === "up" && navScroll.scrollPos > 150
                         ? "show"
                         : ""
             }`}>

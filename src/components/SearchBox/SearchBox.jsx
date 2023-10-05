@@ -43,7 +43,7 @@ const SearchBox = ({ closeResults, setCloseResults }) => {
                     value={qurey}
                     onChange={handleOnChange}
                     onMouseDown={handleOnChange}
-                    onClick={handleOnChange}
+                onClick={handleOnChange}
                 />
 
                 {!closeResults && (
